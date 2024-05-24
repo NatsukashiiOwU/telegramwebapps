@@ -65,7 +65,7 @@
    tg.MainButton.show()
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      tg.sendData(document.getElementById('recepient').value+" << "+document.getElementById('message').value); 
+      tg.sendData(document.getElementById('recepient').value+"<<"+document.getElementById('message').value); 
       //при клике на основную кнопку отправляем данные в строковом виде
    });
 
