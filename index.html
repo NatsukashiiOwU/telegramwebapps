@@ -46,6 +46,8 @@
 <body>
    <div id="usercard"> <!--Карта профиля, человека, который к нам обратился-->
    </div>
+   <p>Введите id получателя</p> <!--Просто текст для проверки-->
+   <input id="recepient" type="text"></input>
    <p>Введите сообщение</p> <!--Просто текст для проверки-->
    <input id="message" type="text"></input>
 </body>
@@ -63,7 +65,7 @@
    tg.MainButton.show()
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      tg.sendData(document.getElementById('message').value); 
+      tg.sendData(document.getElementById('recepient').value+" << "+document.getElementById('message').value); 
       //при клике на основную кнопку отправляем данные в строковом виде
    });
 
