@@ -58,19 +58,19 @@
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
    //Share this string with your friend
-   var commonNums = diffie.gen();
+   var commonNums = Diffie.gen();
    // Some code where you send the above string to your friend -- skip 
 
    // Some function where you recieve a similar string from your friend
    
    // This callback is called when you get your friend's data
-   diffie.update(commonNums);
+   Diffie.update(commonNums);
 
    var yourPublicKey = Math.pow(g,s) % p;
 
    tg.sendData(yourPublicKey);
    
-   var secretKey = diffie.key; //This will give you your secret shared key 
+   var secretKey = Diffie.key; //This will give you your secret shared key 
 
    console.log(secretKey);
    
