@@ -71,15 +71,17 @@
 <script>
    
 
-   var publicKey;
-   var privateKey;
-   var iv;
+   var publicKey = tg.CloudStorage.getItem("publicKey");
+   var privateKey = tg.CloudStorage.getItem("privateKey");
+   var iv = tg.CloudStorage.getItem("iv");
+   var secret = tg.CloudStorage.getItem("secret");
    var message;
-   var secret;
    
    function createKey(){
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
+         tg.CloudStorage.setItem("secret", secret);
+         tg.CloudStorage.setItem("publicKey", publicKey);
          tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
@@ -87,6 +89,8 @@
          var friendPublicKey = document.getElementById('recepientkey').value;
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
+         tg.CloudStorage.setItem("privateKey",privateKey);
+         tg.CloudStorage.setItem("iv", iv);
    }
    
    function sendMessage(){
@@ -102,15 +106,15 @@
    }
    
 
-   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
 
-   tg.expand(); //расширяем на все окно  
+   tg.expand(); //расширяем на все окно
 
-   tg.MainButton.text = "Отправить сообщение"; //изменяем текст кнопки 
+   tg.MainButton.text = "Отправить сообщение"; //изменяем текст кнопки
    tg.MainButton.show()
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      tg.sendData(sendMessage()); 
+      tg.sendData(sendMessage());
       //при клике на основную кнопку отправляем данные в строковом виде
    });
 
