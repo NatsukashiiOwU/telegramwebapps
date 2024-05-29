@@ -78,10 +78,10 @@
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
    let cs = window.Telegram.WebApp.CloudStorage;
 
-   var publicKey = cs.getItem("publicKey");
-   var privateKey = cs.getItem("privateKey");
-   var iv = cs.getItem("iv");
-   var secret = cs.getItem("secret");
+   var publicKey = localStorage.getItem("publicKey");
+   var privateKey = localStorage.getItem("privateKey");
+   var iv = localStorage.getItem("iv");
+   var secret = localStorage.getItem("secret");
    var message;
 
    
@@ -89,23 +89,23 @@
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
          console.log(secret);
-         cs.setItem("secret", secret);
-         cs.setItem("publicKey", publicKey);
+         localStorage.setItem("secret", secret);
+         localStorage.setItem("publicKey", publicKey);
          console.log(publicKey)
          //tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
    function importRecKey(){
-         var check = cs.getKeys();
+         var check = localStorage.getKeys();
          console.log(check);
          var friendPublicKey = document.getElementById('recepientkey').value;
          console.log(friendPublicKey);
          console.log(secret);
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
-         cs.setItem("privateKey",privateKey);
-         cs.setItem("iv", iv);
-         check = cs.getKeys();
+         localStorage.setItem("privateKey",privateKey);
+         localStorage.setItem("iv", iv);
+         check = localStorage.getKeys();
          console.log(check);
    }
    
