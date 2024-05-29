@@ -91,7 +91,7 @@
    }
    
    function sendMessage(){
-         var msgData document.getElementById('message').value;
+         var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          tg.sendData(document.getElementById('recepient').value+"<<"+message);
    }
