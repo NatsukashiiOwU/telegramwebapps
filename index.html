@@ -96,8 +96,6 @@
    }
    
    function importRecKey(){
-         var check = localStorage.getKeys();
-         console.log(check);
          var friendPublicKey = document.getElementById('recepientkey').value;
          console.log(friendPublicKey);
          console.log(secret);
@@ -105,7 +103,6 @@
          iv  = SafeExchange.generateIV(privateKey);
          localStorage.setItem("privateKey",privateKey);
          localStorage.setItem("iv", iv);
-         check = localStorage.getKeys();
          console.log(check);
    }
    
