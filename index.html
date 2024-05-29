@@ -87,13 +87,15 @@
    }
    
    function importRecKey(){
-         console.log(tg.CloudStorage.getKeys);
+         var check = tg.CloudStorage.getKeys;
+         console.log();
          var friendPublicKey = document.getElementById('recepientkey').value;
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
          tg.CloudStorage.setItem("privateKey",privateKey);
          tg.CloudStorage.setItem("iv", iv);
-         console.log(tg.CloudStorage.getKeys);
+         check = tg.CloudStorage.getKeys;
+         console.log();
    }
    
    function sendMessage(){
