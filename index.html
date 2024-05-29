@@ -82,7 +82,7 @@
    function createKey(){
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
-         getKeys.setItem("secret", secret);
+         cs.setItem("secret", secret);
          cs.setItem("publicKey", publicKey);
          tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
