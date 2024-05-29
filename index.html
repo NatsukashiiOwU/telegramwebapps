@@ -59,8 +59,8 @@
 
    var safeExchange = new SafeExchange();
    
-   var secret    = SafeExchange.generateSecretInt();
-   var publicKey = SafeExchange.generatePublicKey(secret);
+   var secret    = safeExchange.generateSecretInt();
+   var publicKey = safeExchange.generatePublicKey(secret);
    
    var simpleCrypto = new SimpleCrypto(secretKey);
    
