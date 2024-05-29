@@ -52,30 +52,67 @@
    </div>
    <p>Введите id получателя</p> <!--Просто текст для проверки-->
    <input id="recepient" type="text"></input>
-   <p>Введите сообщение</p> <!--Просто текст для проверки-->
+   <p>Введите ключ шифрования</p> <!--Просто текст для проверки-->
+   <input id="key" type="text"></input>
+   <p>DH create public key</p> <!--Просто текст для проверки-->
+   <button id="dhcreatepublicbutton"></button>
+   <input id="publickey" type="text"></input>
+   <p>DH proceed recepient key</p> <!--Просто текст для проверки-->
+   <button id="dhimportpublicbutton"></button>
+   <input id="recepientkey" type="text"></input>
+   <p>Введите сообщение для отправки</p> <!--Просто текст для проверки-->
    <input id="message" type="text"></input>
+   <p>Введите полученное сообщение</p> <!--Просто текст для проверки-->
+   <input id="recmessage" type="text"></input>
+   <span id="decmessage">...</span>
 </body>
 
 <script>
+   const dhcreatepublicbutton = document.querySelector("dhcreatepublicbutton");
+   const dhimportpublicbutton = document.querySelector("dhimportpublicbutton");
    
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+
+   var publicKey;
+   var privateKey;
+   var iv;
+   var message;
    
-   var secret    = SafeExchange.generateSecretInt();
-   var publicKey = SafeExchange.generatePublicKey(secret);
+   function createKey(){
+         var secret    = SafeExchange.generateSecretInt();
+         publicKey = SafeExchange.generatePublicKey(secret);
+         tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
+   }
    
-   var simpleCrypto = new SimpleCrypto(secretKey);
+   function importRecKey(){
+         var friendPublicKey = document.getElementById('recepientkey').value;
+         privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
+         iv  = SafeExchange.generateIV(privateKey);
+   }
+   
+   function sendMessage(){
+         var msgData document.getElementById('message').value;
+         message = SafeExchange.signMessage(msgData, privateKey, iv);
+         tg.sendData(document.getElementById('recepient').value+"<<"+message);
+   }
+
+   function readMessage(){
+         var encMessage = document.getElementById('recepient').value;
+         var recmessage = SafeExchange.releaseMessage(encMessage, encHash, privateKey, iv);
+         document.getElementById("decmessage").innerHTML = message;
+   }
+
+   dhcreatepublicbutton.onclick(createKey());
+   dhimportpublicbutton.onclick(importRecKey());
+   
    
    tg.expand(); //расширяем на все окно  
 
-   tg.MainButton.text = "Changed Text"; //изменяем текст кнопки 
-   tg.MainButton.setText("Changed Text1"); //изменяем текст кнопки иначе
-   tg.MainButton.textColor = "#F55353"; //изменяем цвет текста кнопки
-   tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
-   tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
+   tg.MainButton.text = "Отправить сообщение"; //изменяем текст кнопки 
    tg.MainButton.show()
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      tg.sendData(document.getElementById('recepient').value+"<<"+document.getElementById('message').value); 
+      tg.sendData(sendMessage()); 
       //при клике на основную кнопку отправляем данные в строковом виде
    });
 
