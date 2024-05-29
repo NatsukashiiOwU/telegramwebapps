@@ -71,7 +71,7 @@
 <script>
    
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-   let cs = window.Telegram.CloudStorage;
+   let cs = window.Telegram.WebApp.CloudStorage;
 
    var publicKey = cs.getItem("publicKey");
    var privateKey = cs.getItem("privateKey");
