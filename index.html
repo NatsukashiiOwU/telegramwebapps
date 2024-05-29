@@ -88,14 +88,14 @@
    
    function importRecKey(){
          var check = tg.CloudStorage.getKeys;
-         console.log();
+         console.log(check);
          var friendPublicKey = document.getElementById('recepientkey').value;
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
          tg.CloudStorage.setItem("privateKey",privateKey);
          tg.CloudStorage.setItem("iv", iv);
          check = tg.CloudStorage.getKeys;
-         console.log();
+         console.log(check);
    }
    
    function sendMessage(){
