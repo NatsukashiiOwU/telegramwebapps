@@ -55,10 +55,10 @@
    <p>Введите ключ шифрования</p>
    <input id="key" type="text"></input>
    <p>DH create public key</p>
-   <button id="dhcreatepublicbutton"></button>
+   <button onclick="createKey()" id="dhcreatepublicbutton"></button>
    <input id="publickey" type="text"></input>
    <p>DH proceed recepient key</p>
-   <button id="dhimportpublicbutton"></button>
+   <button onclick="importRecKey()" id="dhimportpublicbutton"></button>
    <input id="recepientkey" type="text"></input>
    <p>Введите сообщение для отправки</p>
    <input id="message" type="text"></input>
@@ -68,8 +68,6 @@
 </body>
 
 <script>
-   const dhcreatepublicbutton = document.getElementById("dhcreatepublicbutton");
-   const dhimportpublicbutton = document.getElementById("dhimportpublicbutton");
    
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
