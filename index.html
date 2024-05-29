@@ -71,7 +71,7 @@
 <script>
    
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-   
+
    var publicKey = tg.CloudStorage.getItem("publicKey");
    var privateKey = tg.CloudStorage.getItem("privateKey");
    var iv = tg.CloudStorage.getItem("iv");
@@ -81,17 +81,19 @@
    function createKey(){
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
-         tg.CloudStorage.setItem("secret", secret);
+         getKeys.setItem("secret", secret);
          tg.CloudStorage.setItem("publicKey", publicKey);
          tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
    function importRecKey(){
+         console.log(tg.CloudStorage.getKeys);
          var friendPublicKey = document.getElementById('recepientkey').value;
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
          tg.CloudStorage.setItem("privateKey",privateKey);
          tg.CloudStorage.setItem("iv", iv);
+         console.log(tg.CloudStorage.getKeys);
    }
    
    function sendMessage(){
