@@ -70,13 +70,14 @@
 
 <script>
    
-
+   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+   
    var publicKey = tg.CloudStorage.getItem("publicKey");
    var privateKey = tg.CloudStorage.getItem("privateKey");
    var iv = tg.CloudStorage.getItem("iv");
    var secret = tg.CloudStorage.getItem("secret");
    var message;
-   
+
    function createKey(){
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
@@ -106,7 +107,7 @@
    }
    
 
-   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+   
 
    tg.expand(); //расширяем на все окно
 
