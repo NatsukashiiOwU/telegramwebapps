@@ -86,7 +86,8 @@
          console.log(secret);
          cs.setItem("secret", secret);
          cs.setItem("publicKey", publicKey);
-         tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
+         console.log(publicKey)
+         //tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
    function importRecKey(){
