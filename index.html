@@ -79,7 +79,7 @@
    function createKey(){
          var secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
-         //tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
+         tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
    function importRecKey(){
