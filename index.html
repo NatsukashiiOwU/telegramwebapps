@@ -75,9 +75,10 @@
    var privateKey;
    var iv;
    var message;
+   var secret;
    
    function createKey(){
-         var secret    = SafeExchange.generateSecretInt();
+         secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
          tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
