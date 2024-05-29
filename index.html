@@ -74,6 +74,8 @@
 </body>
 
 <script>
+   //!!!TODO reint variables from storage
+   //!!!TODO fix message dispatch
    
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
    let cs = window.Telegram.WebApp.CloudStorage;
@@ -103,7 +105,6 @@
          iv  = SafeExchange.generateIV(privateKey);
          localStorage.setItem("privateKey",privateKey);
          localStorage.setItem("iv", iv);
-         console.log(check);
    }
    
    function sendMessage(){
