@@ -88,14 +88,14 @@
    }
    
    function importRecKey(){
-         var check = cs.getKeys;
+         var check = cs.getKeys();
          console.log(check);
          var friendPublicKey = document.getElementById('recepientkey').value;
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
          cs.setItem("privateKey",privateKey);
          cs.setItem("iv", iv);
-         check = cs.getKeys;
+         check = cs.getKeys();
          console.log(check);
    }
    
