@@ -92,6 +92,7 @@
          var check = cs.getKeys();
          console.log(check);
          var friendPublicKey = document.getElementById('recepientkey').value;
+         console.log(friendPublicKey);
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
          cs.setItem("privateKey",privateKey);
