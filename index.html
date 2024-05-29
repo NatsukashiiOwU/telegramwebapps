@@ -69,7 +69,6 @@
 
 <script>
    
-   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
    var publicKey;
    var privateKey;
@@ -100,6 +99,9 @@
          document.getElementById("decmessage").innerHTML = message;
    }
    
+
+   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+
    tg.expand(); //расширяем на все окно  
 
    tg.MainButton.text = "Отправить сообщение"; //изменяем текст кнопки 
