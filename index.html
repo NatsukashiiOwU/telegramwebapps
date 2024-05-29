@@ -114,19 +114,15 @@
          var recmessage = SafeExchange.releaseMessage(encMessage, encHash, privateKey, iv);
          document.getElementById("decmessage").innerHTML = message;
    }
-   
 
-   
+   tg.expand();
 
-   tg.expand(); //расширяем на все окно
-
-   tg.MainButton.text = "Отправить сообщение"; //изменяем текст кнопки
-   tg.MainButton.disable();
+   tg.MainButton.text = "Отправить сообщение";
+   tg.MainButton.enable();
    tg.MainButton.show();
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
       sendMessage();
-      //при клике на основную кнопку отправляем данные в строковом виде
    });
 
 </script>
