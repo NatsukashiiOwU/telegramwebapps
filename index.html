@@ -121,13 +121,15 @@
          var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          console.log(message);
-         tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
+         //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
+         tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
    }
 
    function readMessage(){
-         var encMessage = document.getElementById('recepient').value;
+         var botMessage = document.getElementById('recepient').value;
+         var encMessage = JSON.parse(document.getElementById('recepient').value);
          var recmessage = SafeExchange.releaseMessage(encMessage, encHash, privateKey, iv);
-         document.getElementById("decmessage").innerHTML = message;
+         document.getElementById("decmessage").innerHTML = recmessage;
    }
 
    tg.expand();
