@@ -76,22 +76,29 @@
 <script>
    //!!!TODO reint variables from storage
    //!!!TODO fix message dispatch
-   
+   reintVars();
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
    let cs = window.Telegram.WebApp.CloudStorage;
 
+   var latestRec = localStorage.getItem("latestRec");
    var publicKey = localStorage.getItem("publicKey");
    var privateKey = localStorage.getItem("privateKey");
    var iv = localStorage.getItem("iv");
    var secret = localStorage.getItem("secret");
    var message;
 
-   
+   function reintVars(){
+      document.getElementById('recepient').value = latestRec;
+      document.getElementById('key').value = privateKey;
+      document.getElementById('publickey').value = publicKey;
+   }
+
    function createKey(){
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
          console.log(secret);
          localStorage.setItem("secret", secret);
+         localStorage.setItem("latestRec", latestRec);
          localStorage.setItem("publicKey", publicKey);
          console.log(publicKey)
          //tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
