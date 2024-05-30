@@ -128,7 +128,7 @@
    function readMessage(){
          var botMessage = document.getElementById('recepient').value;
          var encMessage = JSON.parse(document.getElementById('recepient').value);
-         var recmessage = SafeExchange.releaseMessage(encMessage, encHash, privateKey, iv);
+         var recmessage = SafeExchange.releaseMessage(encMessage.msg, encHash.hash, privateKey, iv);
          document.getElementById("decmessage").innerHTML = recmessage;
    }
 
