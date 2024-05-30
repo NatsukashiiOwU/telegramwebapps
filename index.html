@@ -123,7 +123,8 @@
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          console.log(message);
          //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
-         tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
+         console.log(JSON.stringify(message));
+         //tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
    }
 
    function readMessage(){
