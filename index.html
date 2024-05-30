@@ -86,7 +86,7 @@
    var iv = localStorage.getItem("iv");
    var secret = localStorage.getItem("secret");
    var message;
-   
+
    reintVars();
 
    function reintVars(){
@@ -120,7 +120,7 @@
          var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          console.log(message);
-         tg.sendData(document.getElementById('recepient').value+"<<"+message);
+         //tg.sendData(document.getElementById('recepient').value+"<<"+message);
    }
 
    function readMessage(){
