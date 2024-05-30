@@ -121,10 +121,10 @@
    function sendMessage(){
          var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
-         console.log(message);
+         //console.log(message);
          //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
-         console.log(JSON.stringify(message));
-         //tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
+         //console.log(JSON.stringify(message));
+         tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
    }
 
    function readMessage(){
