@@ -120,7 +120,7 @@
          var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          console.log(message);
-         //tg.sendData(document.getElementById('recepient').value+"<<"+message);
+         tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
    }
 
    function readMessage(){
