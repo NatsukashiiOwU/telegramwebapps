@@ -76,7 +76,7 @@
 <script>
 
    //!!!TODO fix message dispatch
-   reintVars();
+
    let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
    let cs = window.Telegram.WebApp.CloudStorage;
 
@@ -86,6 +86,8 @@
    var iv = localStorage.getItem("iv");
    var secret = localStorage.getItem("secret");
    var message;
+   
+   reintVars();
 
    function reintVars(){
       document.getElementById('recepient').value = latestRec;
