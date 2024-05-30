@@ -69,6 +69,7 @@
    <p>Введите сообщение для отправки</p>
    <input id="message" type="text"></input>
    <p>Введите полученное сообщение</p>
+   <button onclick="readMessage()" id="readMessagebutton"></button>
    <input id="recmessage" type="text"></input>
    <span id="decmessage">...</span>
 </body>
@@ -103,7 +104,7 @@
          localStorage.setItem("latestRec", latestRec);
          localStorage.setItem("publicKey", publicKey);
          console.log(publicKey)
-         //tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
+         tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
    function importRecKey(){
