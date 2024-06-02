@@ -118,7 +118,8 @@
    function sendMessage(){
          var enc = new TextEncoder();
          var msgData = enc.encode(document.getElementById('message').value);
-         message = SafeExchange.signMessage(msgData, privateKey, iv);
+         message = window.crypto.subtle.encrypt({name: "AES-CBC",iv: iv,},privateKey,msgData,);
+         //message = SafeExchange.signMessage(msgData, privateKey, iv);
          localStorage.setItem("latestRec", document.getElementById('recepient').value);
          //console.log(message);
          //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
@@ -132,7 +133,8 @@
          var botMessage = document.getElementById('recmessage').value;
          encMessage = JSON.parse(document.getElementById('recmessage').value);
          console.log(encMessage);
-         var recmessage = SafeExchange.releaseMessage(encMessage.msg, encMessage.hash, privateKey, iv);
+         //var recmessage = SafeExchange.releaseMessage(encMessage.msg, encMessage.hash, privateKey, iv);
+         var recmessage = window.crypto.subtle.decrypt({ name: "AES-CBC", iv }, privateKey, encMessage);
          recmessage = enc.decode(recmessage);
          document.getElementById("decmessage").innerHTML = recmessage;
    }
