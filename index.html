@@ -15,7 +15,6 @@
 
 <!--   <script src="https://cdn.jsdelivr.net/gh/NatsukashiiOwU/telegramwebapps@main/deps/patched.js"></script> <!--Подключаем скрипт от телеграм-->
    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.3/crypto-js.js"></script>
    
 
    <style>
@@ -117,20 +116,24 @@
    }
    
    function sendMessage(){
-         var msgData = document.getElementById('message').value;
+         var enc = new TextEncoder();
+         var msgData = enc.encode(document.getElementById('message').value);
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          localStorage.setItem("latestRec", document.getElementById('recepient').value);
          //console.log(message);
          //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
          //console.log(JSON.stringify(message));
          tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
+
    }
 
    function readMessage(){
+         var enc = new TextEncoder();
          var botMessage = document.getElementById('recmessage').value;
          encMessage = JSON.parse(document.getElementById('recmessage').value);
          console.log(encMessage);
          var recmessage = SafeExchange.releaseMessage(encMessage.msg, encMessage.hash, privateKey, iv);
+         recmessage = enc.decode(recmessage);
          document.getElementById("decmessage").innerHTML = recmessage;
    }
 
