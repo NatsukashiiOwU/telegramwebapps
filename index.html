@@ -116,26 +116,23 @@
    }
    
    function sendMessage(){
-         var enc = new TextEncoder();
-         var msgData = enc.encode(document.getElementById('message').value);
-         message = window.crypto.subtle.encrypt({name: "AES-CBC",iv: iv,},privateKey,msgData,);
+         var msgData = document.getElementById('message').value;
          //message = SafeExchange.signMessage(msgData, privateKey, iv);
+         message = SafeExchange.signMessage(msgData, privateKey, iv);
          localStorage.setItem("latestRec", document.getElementById('recepient').value);
          //console.log(message);
          //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
          //console.log(JSON.stringify(message));
+         //tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
          tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
 
    }
 
    function readMessage(){
-         var enc = new TextEncoder();
          var botMessage = document.getElementById('recmessage').value;
          encMessage = JSON.parse(document.getElementById('recmessage').value);
          console.log(encMessage);
-         //var recmessage = SafeExchange.releaseMessage(encMessage.msg, encMessage.hash, privateKey, iv);
-         var recmessage = window.crypto.subtle.decrypt({ name: "AES-CBC", iv }, privateKey, encMessage);
-         recmessage = enc.decode(recmessage);
+         var recmessage = SafeExchange.releaseMessage(encMessage.msg, encMessage.hash, privateKey, iv);
          document.getElementById("decmessage").innerHTML = recmessage;
    }
 
