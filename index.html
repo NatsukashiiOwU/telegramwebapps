@@ -102,7 +102,7 @@
          publicKey = SafeExchange.generatePublicKey(secret);
          console.log(secret);
          localStorage.setItem("secret", secret);
-         localStorage.setItem("latestRec", latestRec);
+         localStorage.setItem("latestRec", document.getElementById('recepient').value);
          localStorage.setItem("publicKey", publicKey);
          console.log(publicKey)
          tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
@@ -121,6 +121,7 @@
    function sendMessage(){
          var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
+         localStorage.setItem("latestRec", document.getElementById('recepient').value);
          //console.log(message);
          //tg.sendData(document.getElementById('recepient').value+"<<"+"{"+message.msg+","+message.hash+"}");
          //console.log(JSON.stringify(message));
