@@ -68,7 +68,7 @@
    <p>Введите сообщение для отправки</p>
    <input id="message" type="text"></input>
    <p>Введите полученное сообщение</p>
-   <button onclick="readMessage()" id="readMessagebutton">Расшифровать сообщение</button>
+   <button onclick="timerReadMessage()" id="readMessagebutton">Расшифровать сообщение</button>
    <input id="recmessage" type="text"></input>
    <span id="decmessage">...</span>
 </body>
@@ -87,6 +87,24 @@
    var encMessage;
 
    reintVars();
+
+   function timerSendMessage(){
+      const start = performance.now();
+      sendMessage();
+      const end = performance.now();
+      const executionTime = end - start;
+      
+      console.log(`Execution time: ${executionTime.toFixed(2)} milliseconds`);
+   }
+
+   function timerReadMessage(){
+      const start = performance.now();
+      readMessage();
+      const end = performance.now();
+      const executionTime = end - start;
+      
+      console.log(`Execution time: ${executionTime.toFixed(2)} milliseconds`);
+   }
 
    function reintVars(){
       document.getElementById('recepient').value = latestRec;
@@ -143,7 +161,7 @@
    tg.MainButton.show();
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      sendMessage();
+      timerSendMessage();
    });
 
 </script>
