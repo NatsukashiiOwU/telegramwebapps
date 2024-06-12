@@ -111,18 +111,14 @@
    function createKey(){
          secret    = SafeExchange.generateSecretInt();
          publicKey = SafeExchange.generatePublicKey(secret);
-         console.log(secret);
          localStorage.setItem("secret", secret);
          localStorage.setItem("latestRec", document.getElementById('recepient').value);
          localStorage.setItem("publicKey", publicKey);
-         console.log(publicKey)
          tg.sendData(document.getElementById('recepient').value+"<<"+publicKey);
    }
    
    function importRecKey(){
          var friendPublicKey = document.getElementById('recepientkey').value;
-         console.log(friendPublicKey);
-         console.log(secret);
          privateKey      = SafeExchange.generatePrivateKey(friendPublicKey, secret);
          iv  = SafeExchange.generateIV(privateKey);
          localStorage.setItem("privateKey",privateKey);
@@ -133,16 +129,12 @@
          var msgData = document.getElementById('message').value;
          message = SafeExchange.signMessage(msgData, privateKey, iv);
          localStorage.setItem("latestRec", document.getElementById('recepient').value);
-
          tg.sendData(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
-         console.log(document.getElementById('recepient').value+"<<"+JSON.stringify(message));
 
    }
 
    function readMessage(){
-         var botMessage = document.getElementById('recmessage').value;
          encMessage = JSON.parse(document.getElementById('recmessage').value);
-         console.log(encMessage);
          var recmessage = SafeExchange.releaseMessage(encMessage.msg, encMessage.hash, privateKey, iv);
          document.getElementById("decmessage").innerHTML = recmessage;
    }
