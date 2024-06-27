@@ -64,7 +64,7 @@
    <p>Введите сообщение для отправки</p>
    <input id="message" type="text"></input>
    <p>Введите полученное сообщение</p>
-   <button onclick="ReadMessage()" id="readMessagebutton">Расшифровать сообщение</button>
+   <button onclick="timerReadMessage()" id="readMessagebutton">Расшифровать сообщение</button>
    <input id="recmessage" type="text"></input>
    <span id="decmessage">...</span>
 </body>
@@ -146,7 +146,7 @@
    tg.MainButton.show();
 
    Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      SendMessage();
+      timerSendMessage();
    });
 
 </script>
